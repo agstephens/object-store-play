@@ -269,8 +269,10 @@ This suggests that a compression method is being applied. It is using:
 Some thoughts:
 
 1) What if this is set to True?
-   xr.open_mfdataset('my/files/*.nc', parallel=True)
-   
+```
+xr.open_mfdataset('my/files/*.nc', parallel=True)
+```
+
 2) Why is Zarr bigger than NetCDF version?
 
 3) What if we change the environment variables?
@@ -278,13 +280,15 @@ Some thoughts:
 4) Is Caringo quicker/slower than to disk? By what factor?
 
 5) Should we set all these ENV VARS (based on Met Office numpy/dask advice)?
+```
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export VECLIB_MAXIMUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
+```
 
 6) Should we set this dask option?
-dask.config.set(scheduler='synchronous')
+`dask.config.set(scheduler='synchronous')`
 So that probably explains the issue. However, why is it not smaller than the NetCDF version.
 
